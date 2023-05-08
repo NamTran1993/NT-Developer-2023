@@ -8,6 +8,7 @@ namespace WinFormsApp
         private string _baseDic = string.Empty;
 
         private WFTimer? _timers = null;
+        private WFThread? _threadMan = null;
 
         public Form1()
         {
@@ -93,6 +94,34 @@ namespace WinFormsApp
             {
                 _timers?.RelaseTimer();
                 _timers = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnThread_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_threadMan is null)
+                    _threadMan = new WFThread(2000, 100);
+
+                _threadMan?.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnThreStop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _threadMan?.Stop();
+                _threadMan = null;
             }
             catch (Exception ex)
             {

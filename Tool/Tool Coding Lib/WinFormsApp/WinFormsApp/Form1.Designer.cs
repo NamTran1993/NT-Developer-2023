@@ -33,6 +33,8 @@
             this.btnTimersStart = new System.Windows.Forms.Button();
             this.btnTimerStop = new System.Windows.Forms.Button();
             this.btnRelease = new System.Windows.Forms.Button();
+            this.btnThread = new System.Windows.Forms.Button();
+            this.btnThreStop = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLog
@@ -85,11 +87,33 @@
             this.btnRelease.UseVisualStyleBackColor = true;
             this.btnRelease.Click += new System.EventHandler(this.btnRelease_Click);
             // 
+            // btnThread
+            // 
+            this.btnThread.Location = new System.Drawing.Point(463, 12);
+            this.btnThread.Name = "btnThread";
+            this.btnThread.Size = new System.Drawing.Size(117, 23);
+            this.btnThread.TabIndex = 5;
+            this.btnThread.Text = "thread mana start";
+            this.btnThread.UseVisualStyleBackColor = true;
+            this.btnThread.Click += new System.EventHandler(this.btnThread_Click);
+            // 
+            // btnThreStop
+            // 
+            this.btnThreStop.Location = new System.Drawing.Point(586, 12);
+            this.btnThreStop.Name = "btnThreStop";
+            this.btnThreStop.Size = new System.Drawing.Size(118, 23);
+            this.btnThreStop.TabIndex = 6;
+            this.btnThreStop.Text = "thread mana stop";
+            this.btnThreStop.UseVisualStyleBackColor = true;
+            this.btnThreStop.Click += new System.EventHandler(this.btnThreStop_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 514);
+            this.Controls.Add(this.btnThreStop);
+            this.Controls.Add(this.btnThread);
             this.Controls.Add(this.btnRelease);
             this.Controls.Add(this.btnTimerStop);
             this.Controls.Add(this.btnTimersStart);
@@ -109,5 +133,7 @@
         private Button btnTimersStart;
         private Button btnTimerStop;
         private Button btnRelease;
+        private Button btnThread;
+        private Button btnThreStop;
     }
 }
