@@ -1,6 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Text;
 using System.Xml.Serialization;
@@ -155,12 +153,13 @@ namespace CSGlobal.Module.Extensions
             {
                 if (!string.IsNullOrEmpty(pathFile) && File.Exists(pathFile))
                     return true;
+
+                return false;
             }
             catch (Exception)
             {
                 throw;
             }
-            return false;
         }
 
         public static string CSFileReadAllText(this string pathFile)
@@ -172,13 +171,12 @@ namespace CSGlobal.Module.Extensions
                     throw new Exception("File not exist!");
 
                 res = File.ReadAllText(pathFile);
-
+                return res;
             }
             catch (Exception)
             {
                 throw;
             }
-            return res;
         }
 
         public static bool CSFileWriteAllText(this string pathFile, string content)
@@ -203,12 +201,13 @@ namespace CSGlobal.Module.Extensions
                     File.WriteAllBytes(pathFile, content);
                     return true;
                 }
+
+                return false;
             }
             catch (Exception)
             {
                 throw;
             }
-            return false;
         }
 
         public static bool CSWriteByteToFile(this string? fileName, byte[] pdata)
@@ -232,13 +231,13 @@ namespace CSGlobal.Module.Extensions
 
                     res = true;
                 }
+
+                return res;
             }
             catch (Exception)
             {
                 throw;
             }
-
-            return res;
         }
 
 
@@ -252,13 +251,13 @@ namespace CSGlobal.Module.Extensions
                     File.Delete(pathFile);
                     return true;
                 }
+
+                return false;
             }
             catch (Exception)
             {
                 throw;
-            }
-
-            return false;
+            }   
         }
 
         public static void CSFileRename(this FileInfo? fileInfo, string newName)
@@ -392,7 +391,7 @@ namespace CSGlobal.Module.Extensions
             catch (Exception)
             {
                 throw;
-            }     
+            }
         }
 
         public static string CSReadAllTextFile(this string pathFile)
@@ -407,7 +406,7 @@ namespace CSGlobal.Module.Extensions
             catch (Exception)
             {
                 throw;
-            }   
+            }
         }
 
 
