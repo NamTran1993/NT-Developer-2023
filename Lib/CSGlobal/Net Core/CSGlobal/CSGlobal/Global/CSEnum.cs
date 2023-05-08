@@ -27,6 +27,6 @@
         DEFAULT_4,
         DATE,
         TIME,
-        FULL
+        REMOVE_LINE
     }
 }

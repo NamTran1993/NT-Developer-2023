@@ -34,7 +34,7 @@ namespace CSGlobal.Global
             }
         }
 
-        public static void Log(string fileName, string content, CSLOGGER typeLogger = CSLOGGER.NONE, bool bEnd = true)
+        public static void Log(string fileName, string content, CSLOGGER typeLogger = CSLOGGER.NONE)
         {
             try
             {
@@ -122,18 +122,11 @@ namespace CSGlobal.Global
                              * 12/5/2019 9:42:00 AM - Microsoft VSIX Installer
                                12/5/2019 9:42:00 AM - -------------------------------------------
                              **/
-                            string date_time = dtNow.ToString("yyyy-MM-dd HH:mm:ss.fff");
+                            string date_time = dtNow.ToString("yyyy-MM-dd hh:mm:ss tt");
                             string line = string.Empty;
-
-
                             string fullContent = string.Empty;
-                            if (bEnd)
-                            {
-                                line = "----------[END]----------\r\n";
-                                fullContent = $"{date_time}{content}\r\n{line}";
-                            }
-                            else
-                                fullContent = $"{date_time}{content}\r\n";
+
+                            fullContent = $"{date_time}: {content}\r\n";
 
                             long offset = file_stream.Seek(0, SeekOrigin.End);
                             ASCIIEncoding? encoding = new ASCIIEncoding();
@@ -154,6 +147,36 @@ namespace CSGlobal.Global
             }
             catch (Exception)
             { }
+        }
+
+        public static string CreateGUID(CSGUID type = CSGUID.DEFAULT, bool isUpper = false)
+        {
+            string res = string.Empty;
+            try
+            {
+                string guid = Guid.NewGuid().ToString();
+                string[] arrGuid = guid.Split('-');
+                if (arrGuid is not null && arrGuid.Length > 0)
+                {
+                    res = type switch
+                    {
+                        CSGUID.DATE => string.Format("{0}-{1}-{2}", DateTime.Now.ToString("yyyy-MM-dd"), arrGuid[0], arrGuid[1]),
+                        CSGUID.TIME => string.Format("{0}-{1}-{2}", DateTime.Now.ToString("hh-mm-ss"), arrGuid[0], arrGuid[1]),
+                        CSGUID.DEFAULT_2 => string.Format("{0}-{1}", arrGuid[0], arrGuid[2]),
+                        CSGUID.DEFAULT_3 => string.Format("{0}-{1}", arrGuid[0], arrGuid[3]),
+                        CSGUID.DEFAULT_4 => string.Format("{0}-{1}", arrGuid[0], arrGuid[4]),
+                        CSGUID.REMOVE_LINE => guid.Replace("-", ""),
+                        _ => guid
+                    };
+
+                    if (isUpper)
+                        res = res.ToUpper();
+                    return res;
+                }
+            }
+            catch
+            { }
+            return res;
         }
     }
 }

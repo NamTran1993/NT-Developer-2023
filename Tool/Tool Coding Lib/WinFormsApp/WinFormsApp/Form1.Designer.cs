@@ -28,12 +28,86 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.btnLog = new System.Windows.Forms.Button();
+            this.btnGUID = new System.Windows.Forms.Button();
+            this.btnTimersStart = new System.Windows.Forms.Button();
+            this.btnTimerStop = new System.Windows.Forms.Button();
+            this.btnRelease = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnLog
+            // 
+            this.btnLog.Location = new System.Drawing.Point(12, 12);
+            this.btnLog.Name = "btnLog";
+            this.btnLog.Size = new System.Drawing.Size(75, 23);
+            this.btnLog.TabIndex = 0;
+            this.btnLog.Text = "Test Log";
+            this.btnLog.UseVisualStyleBackColor = true;
+            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
+            // 
+            // btnGUID
+            // 
+            this.btnGUID.Location = new System.Drawing.Point(93, 12);
+            this.btnGUID.Name = "btnGUID";
+            this.btnGUID.Size = new System.Drawing.Size(75, 23);
+            this.btnGUID.TabIndex = 1;
+            this.btnGUID.Text = "guid";
+            this.btnGUID.UseVisualStyleBackColor = true;
+            this.btnGUID.Click += new System.EventHandler(this.btnGUID_Click);
+            // 
+            // btnTimersStart
+            // 
+            this.btnTimersStart.Location = new System.Drawing.Point(174, 12);
+            this.btnTimersStart.Name = "btnTimersStart";
+            this.btnTimersStart.Size = new System.Drawing.Size(75, 23);
+            this.btnTimersStart.TabIndex = 2;
+            this.btnTimersStart.Text = "timers start";
+            this.btnTimersStart.UseVisualStyleBackColor = true;
+            this.btnTimersStart.Click += new System.EventHandler(this.btnTimersStart_Click);
+            // 
+            // btnTimerStop
+            // 
+            this.btnTimerStop.Location = new System.Drawing.Point(255, 12);
+            this.btnTimerStop.Name = "btnTimerStop";
+            this.btnTimerStop.Size = new System.Drawing.Size(75, 23);
+            this.btnTimerStop.TabIndex = 3;
+            this.btnTimerStop.Text = "timers stop";
+            this.btnTimerStop.UseVisualStyleBackColor = true;
+            this.btnTimerStop.Click += new System.EventHandler(this.btnTimerStop_Click);
+            // 
+            // btnRelease
+            // 
+            this.btnRelease.Location = new System.Drawing.Point(336, 12);
+            this.btnRelease.Name = "btnRelease";
+            this.btnRelease.Size = new System.Drawing.Size(121, 23);
+            this.btnRelease.TabIndex = 4;
+            this.btnRelease.Text = "timers release";
+            this.btnRelease.UseVisualStyleBackColor = true;
+            this.btnRelease.Click += new System.EventHandler(this.btnRelease_Click);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 514);
+            this.Controls.Add(this.btnRelease);
+            this.Controls.Add(this.btnTimerStop);
+            this.Controls.Add(this.btnTimersStart);
+            this.Controls.Add(this.btnGUID);
+            this.Controls.Add(this.btnLog);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Button btnLog;
+        private Button btnGUID;
+        private Button btnTimersStart;
+        private Button btnTimerStop;
+        private Button btnRelease;
     }
 }
