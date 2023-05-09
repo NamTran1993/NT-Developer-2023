@@ -2,6 +2,7 @@
 
 using BEBackendLib.Module.Communicates;
 using BEBackendLib.Module.Enums;
+using BEBackendLib.Module.Extensions;
 using BEBackendLib.Module.Globals;
 
 namespace WinFormsApp
@@ -156,6 +157,47 @@ namespace WinFormsApp
                 }
 
                 httpClient = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private async void btnPost_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string jsonPost = string.Empty;
+
+                WFJSON jso = new WFJSON()
+                {
+                    Id = 78912,
+                    Customer = "Jason Sweet",
+                    Price = 18.00,
+                    Quantity = 1
+                };
+
+                jsonPost = jso.BEObjectToJson();
+
+                BERequestModel models = new BERequestModel()
+                {
+                    Method = BEMethod.POST,
+                    Url = "https://reqbin.com/echo/post/json",
+                    Timeout = 120,
+                    HeaderParams = new List<HeaderParam>() { new HeaderParam() { Name = "User-Agent", Value = "Other" } }.ToArray(),
+                    JsonRequest = jsonPost
+                };
+
+                BEHttpClient? httpClient = new BEHttpClient(models);
+                httpClient.InitRequest();
+                Task<string?> res = httpClient.GetResponse();
+                await res;
+
+                if (res is not null)
+                {
+                    string? content = res.Result;
+                }
             }
             catch (Exception ex)
             {
