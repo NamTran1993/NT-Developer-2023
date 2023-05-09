@@ -1,9 +1,11 @@
-﻿using CSGlobal.Global;
-using CSGlobal.Module.Threads;
+﻿
+using BEBackendLib.Module.Enums;
+using BEBackendLib.Module.Globals;
+using BEBackendLib.Module.Threads;
 
 namespace WinFormsApp
 {
-    public class WFThread : CSThreadManagers
+    public class WFThread : BEThreadManagers
     {
         private string _LOGFILE = "WFThread.log";
 
@@ -15,11 +17,11 @@ namespace WinFormsApp
         {
             try
             {
-                CSGlobals.Log(_LOGFILE, "\r\n MainProcessing running", CSLOGGER.TRACE);
+                BEGlobals.Log(_LOGFILE, "\r\n MainProcessing running", BELogger.TRACE);
             }
             catch (Exception ex)
             {
-                CSGlobals.Log(_LOGFILE, $"\r\n MainProcessing Exception: \r\n {ex.Message} \r\n {ex.StackTrace}", CSLOGGER.ERROR);
+                BEGlobals.Log(_LOGFILE, $"\r\n MainProcessing Exception: \r\n {ex.Message} \r\n {ex.StackTrace}", BELogger.ERROR);
             }
         }
 
@@ -31,7 +33,7 @@ namespace WinFormsApp
             }
             catch (Exception ex)
             {
-                CSGlobals.Log(_LOGFILE, $"\r\n Start Exception: \r\n {ex.Message} \r\n {ex.StackTrace}", CSLOGGER.ERROR);
+                BEGlobals.Log(_LOGFILE, $"\r\n Start Exception: \r\n {ex.Message} \r\n {ex.StackTrace}", BELogger.ERROR);
             }
         }
 
@@ -43,7 +45,7 @@ namespace WinFormsApp
             }
             catch (Exception ex)
             {
-                CSGlobals.Log(_LOGFILE, $"\r\n Stop Exception: \r\n {ex.Message} \r\n {ex.StackTrace}", CSLOGGER.ERROR);
+                BEGlobals.Log(_LOGFILE, $"\r\n Stop Exception: \r\n {ex.Message} \r\n {ex.StackTrace}", BELogger.ERROR);
             }
         }
     }

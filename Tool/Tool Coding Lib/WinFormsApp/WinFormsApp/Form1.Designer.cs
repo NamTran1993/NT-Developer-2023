@@ -35,6 +35,7 @@
             this.btnRelease = new System.Windows.Forms.Button();
             this.btnThread = new System.Windows.Forms.Button();
             this.btnThreStop = new System.Windows.Forms.Button();
+            this.btnGetHttp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLog
@@ -107,11 +108,22 @@
             this.btnThreStop.UseVisualStyleBackColor = true;
             this.btnThreStop.Click += new System.EventHandler(this.btnThreStop_Click);
             // 
+            // btnGetHttp
+            // 
+            this.btnGetHttp.Location = new System.Drawing.Point(16, 45);
+            this.btnGetHttp.Name = "btnGetHttp";
+            this.btnGetHttp.Size = new System.Drawing.Size(103, 23);
+            this.btnGetHttp.TabIndex = 7;
+            this.btnGetHttp.Text = "Get HttpClient";
+            this.btnGetHttp.UseVisualStyleBackColor = true;
+            this.btnGetHttp.Click += new System.EventHandler(this.btnGetHttp_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 514);
+            this.Controls.Add(this.btnGetHttp);
             this.Controls.Add(this.btnThreStop);
             this.Controls.Add(this.btnThread);
             this.Controls.Add(this.btnRelease);
@@ -135,5 +147,6 @@
         private Button btnRelease;
         private Button btnThread;
         private Button btnThreStop;
+        private Button btnGetHttp;
     }
 }

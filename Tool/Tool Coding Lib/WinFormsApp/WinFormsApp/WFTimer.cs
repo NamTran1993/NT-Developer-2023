@@ -1,10 +1,11 @@
-﻿using CSGlobal.Global;
-using CSGlobal.Module.Timers;
+﻿using BEBackendLib.Module.Enums;
+using BEBackendLib.Module.Globals;
+using BEBackendLib.Module.Timers;
 using System.Timers;
 
 namespace WinFormsApp
 {
-    public class WFTimer : CSTimer
+    public class WFTimer : BETimers
     {
         private string _LOGFILE = "WFTimer.log";
         private double _interval = 0;
@@ -18,7 +19,7 @@ namespace WinFormsApp
         {
             try
             {
-                CSGlobals.Log(_LOGFILE, $"\r\n - Timer_Elapsed, interval: {_interval} (milliseconds)", CSLOGGER.TRACE);
+                BEGlobals.Log(_LOGFILE, $"\r\n - Timer_Elapsed, interval: {_interval} (milliseconds)", BELogger.TRACE);
             }
             catch (Exception)
             {
@@ -30,7 +31,7 @@ namespace WinFormsApp
         {
             try
             {
-                CSGlobals.Log(_LOGFILE, $"\r\n - StartTimer, interval: {_interval} (milliseconds)", CSLOGGER.TRACE);
+                BEGlobals.Log(_LOGFILE, $"\r\n - StartTimer, interval: {_interval} (milliseconds)", BELogger.TRACE);
                 Start();
             }
             catch (Exception)
@@ -43,7 +44,7 @@ namespace WinFormsApp
         {
             try
             {
-                CSGlobals.Log(_LOGFILE, $"\r\n - StopTimer, interval: {_interval} (milliseconds)", CSLOGGER.TRACE);
+                BEGlobals.Log(_LOGFILE, $"\r\n - StopTimer, interval: {_interval} (milliseconds)", BELogger.TRACE);
                 Stop();
             }
             catch (Exception)
@@ -56,7 +57,7 @@ namespace WinFormsApp
         {
             try
             {
-                CSGlobals.Log(_LOGFILE, $"\r\n - ReleaseTimer, interval: {_interval} (milliseconds)", CSLOGGER.TRACE);
+                BEGlobals.Log(_LOGFILE, $"\r\n - ReleaseTimer, interval: {_interval} (milliseconds)", BELogger.TRACE);
                 Release();
             }
             catch (Exception)

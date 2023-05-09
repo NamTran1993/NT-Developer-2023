@@ -1,4 +1,8 @@
-using CSGlobal.Global;
+
+
+using BEBackendLib.Module.Communicates;
+using BEBackendLib.Module.Enums;
+using BEBackendLib.Module.Globals;
 
 namespace WinFormsApp
 {
@@ -18,7 +22,7 @@ namespace WinFormsApp
         private void Form1_Load(object sender, EventArgs e)
         {
             _baseDic = AppDomain.CurrentDomain.BaseDirectory;
-            CSGlobals.InitFolderLog(_baseDic);
+            BEGlobals.InitFolderLog(_baseDic);
         }
 
 
@@ -26,7 +30,7 @@ namespace WinFormsApp
         {
             try
             {
-                CSGlobals.Log(_LOGFILE, $"\r\n btnLog_Click \r\n - Path: {_baseDic}", CSLOGGER.TRACE);
+                BEGlobals.Log(_LOGFILE, $"\r\n btnLog_Click \r\n - Path: {_baseDic}", BELogger.TRACE);
             }
             catch (Exception ex)
             {
@@ -39,19 +43,19 @@ namespace WinFormsApp
             try
             {
                 {
-                    string guid = CSGlobals.CreateGUID(CSGUID.REMOVE_LINE, true);
+                    string guid = BEGlobals.CreateGUID(BEGuid.REMOVE_LINE, true);
                 }
 
                 {
-                    string guid = CSGlobals.CreateGUID(CSGUID.DEFAULT, true);
+                    string guid = BEGlobals.CreateGUID(BEGuid.DEFAULT, true);
                 }
 
                 {
-                    string guid = CSGlobals.CreateGUID(CSGUID.TIME, false);
+                    string guid = BEGlobals.CreateGUID(BEGuid.TIME, false);
                 }
 
                 {
-                    string guid = CSGlobals.CreateGUID(CSGUID.TIME, true);
+                    string guid = BEGlobals.CreateGUID(BEGuid.TIME, true);
                 }
 
             }
@@ -122,6 +126,36 @@ namespace WinFormsApp
             {
                 _threadMan?.Stop();
                 _threadMan = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private async void btnGetHttp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BERequestModel models = new BERequestModel()
+                {
+                    Method = BEMethod.GET,
+                    Url = "https://api.github.com/users/hadley/orgs",
+                    Timeout = 120,
+                    HeaderParams = new List<HeaderParam>() { new HeaderParam() { Name = "User-Agent", Value = "Other" } }.ToArray()
+                };
+
+                BEHttpClient? httpClient = new BEHttpClient(models);
+                httpClient.InitRequest();
+                Task<string?> res = httpClient.GetResponse();
+                await res;
+
+                if (res is not null)
+                {
+                    string? content = res.Result;
+                }
+
+                httpClient = null;
             }
             catch (Exception ex)
             {

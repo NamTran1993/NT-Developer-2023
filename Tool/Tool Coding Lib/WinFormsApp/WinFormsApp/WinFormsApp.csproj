@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Lib\CSGlobal\Net Core\CSGlobal\CSGlobal\CSGlobal.csproj" />
+    <ProjectReference Include="..\..\..\..\Lib\NetCore\CSBackendLib\CSBackendLib\BEBackendLib.csproj" />
   </ItemGroup>
 
 </Project>
