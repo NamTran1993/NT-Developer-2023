@@ -60,13 +60,16 @@ namespace BEBackendLib.Module.Communicates
         {
             try
             {
-                if (_reqModel?.Method == BEMethod.GET)
-                    return await TaskGetAsync();
-
-                else if (_reqModel?.Method == BEMethod.POST)
-                    return await TaskPostAsync();
-
-                return string.Empty;
+                string? res = null;
+                res = _reqModel?.Method switch
+                {
+                    BEMethod.GET => await TaskGetAsync(),
+                    BEMethod.POST => await TaskPostAsync(),
+                    BEMethod.PUT => await TaskPutAsync(),
+                    BEMethod.DELETE => await TaskDeleteAsync(),
+                    _ => string.Empty
+                };
+                return res;  
             }
             catch (Exception)
             {
@@ -120,6 +123,57 @@ namespace BEBackendLib.Module.Communicates
                 if (_httpClient is not null)
                 {
                     HttpResponseMessage? response = await _httpClient.PostAsJsonAsync(_reqModel?.Url, _reqModel?.JsonRequest);
+                    if (response is not null)
+                    {
+                        if (!response.IsSuccessStatusCode)
+                            return response.ReasonPhrase;
+                        else
+                            return await response.Content.ReadAsStringAsync();
+                    }
+                }
+
+                return string.Empty;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private async Task<string?> TaskPutAsync()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(_reqModel?.JsonRequest))
+                    throw new Exception("Json Request is nullorEmpty, please check again!");
+
+                if (_httpClient is not null)
+                {
+                    HttpResponseMessage? response = await _httpClient.PutAsJsonAsync(_reqModel?.Url, _reqModel?.JsonRequest);
+                    if (response is not null)
+                    {
+                        if (!response.IsSuccessStatusCode)
+                            return response.ReasonPhrase;
+                        else
+                            return await response.Content.ReadAsStringAsync();
+                    }
+                }
+
+                return string.Empty;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private async Task<string?> TaskDeleteAsync()
+        {
+            try
+            {
+                if (_httpClient is not null)
+                {
+                    HttpResponseMessage? response = await _httpClient.DeleteAsync(_reqModel?.Url);
                     if (response is not null)
                     {
                         if (!response.IsSuccessStatusCode)
