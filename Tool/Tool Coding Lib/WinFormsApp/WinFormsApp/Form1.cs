@@ -4,6 +4,7 @@ using BEBackendLib.Module.Communicates;
 using BEBackendLib.Module.Enums;
 using BEBackendLib.Module.Extensions;
 using BEBackendLib.Module.Globals;
+using BEBackendLib.Module.Gmail;
 
 namespace WinFormsApp
 {
@@ -198,6 +199,31 @@ namespace WinFormsApp
                 {
                     string? content = res.Result;
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnSendGmail_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BEGmailModel eGmailModel = new BEGmailModel()
+                {
+                    Body = "Hi tran huy nam",
+                    Subject = "C# Gmail",
+                    Email = "nt.mailnoname93@gmail.com",
+                    Password = "bpqmzgfefogdouwv",
+                    ToEmails = new List<string>() { "tranhuynam93@gmail.com"}.ToArray(),
+                   
+                };
+
+                BEGmail gmail = new BEGmail(eGmailModel);
+                gmail.InitGmail();
+                gmail.Send();
+
             }
             catch (Exception ex)
             {

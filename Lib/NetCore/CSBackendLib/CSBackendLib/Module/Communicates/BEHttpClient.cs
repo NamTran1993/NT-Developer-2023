@@ -69,7 +69,7 @@ namespace BEBackendLib.Module.Communicates
                     BEMethod.DELETE => await TaskDeleteAsync(),
                     _ => string.Empty
                 };
-                return res;  
+                return res;
             }
             catch (Exception)
             {
@@ -116,13 +116,14 @@ namespace BEBackendLib.Module.Communicates
 
         private async Task<string?> TaskPostAsync()
         {
+            HttpResponseMessage? response = null;
             try
             {
                 if (string.IsNullOrEmpty(_reqModel?.JsonRequest))
                     throw new Exception("Json Request is nullorEmpty, please check again!");
                 if (_httpClient is not null)
                 {
-                    HttpResponseMessage? response = await _httpClient.PostAsJsonAsync(_reqModel?.Url, _reqModel?.JsonRequest);
+                    response = await _httpClient.PostAsJsonAsync(_reqModel?.Url, _reqModel?.JsonRequest);
                     if (response is not null)
                     {
                         if (!response.IsSuccessStatusCode)
@@ -138,10 +139,12 @@ namespace BEBackendLib.Module.Communicates
             {
                 throw;
             }
+            finally { response = null; }
         }
 
         private async Task<string?> TaskPutAsync()
         {
+            HttpResponseMessage? response = null;
             try
             {
                 if (string.IsNullOrEmpty(_reqModel?.JsonRequest))
@@ -149,7 +152,7 @@ namespace BEBackendLib.Module.Communicates
 
                 if (_httpClient is not null)
                 {
-                    HttpResponseMessage? response = await _httpClient.PutAsJsonAsync(_reqModel?.Url, _reqModel?.JsonRequest);
+                    response = await _httpClient.PutAsJsonAsync(_reqModel?.Url, _reqModel?.JsonRequest);
                     if (response is not null)
                     {
                         if (!response.IsSuccessStatusCode)
@@ -165,15 +168,17 @@ namespace BEBackendLib.Module.Communicates
             {
                 throw;
             }
+            finally { response = null; }
         }
 
         private async Task<string?> TaskDeleteAsync()
         {
+            HttpResponseMessage? response = null;
             try
             {
                 if (_httpClient is not null)
                 {
-                    HttpResponseMessage? response = await _httpClient.DeleteAsync(_reqModel?.Url);
+                    response = await _httpClient.DeleteAsync(_reqModel?.Url);
                     if (response is not null)
                     {
                         if (!response.IsSuccessStatusCode)
@@ -189,6 +194,7 @@ namespace BEBackendLib.Module.Communicates
             {
                 throw;
             }
+            finally { response = null; }
         }
     }
 }

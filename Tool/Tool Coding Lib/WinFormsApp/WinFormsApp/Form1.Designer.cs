@@ -37,6 +37,7 @@
             this.btnThreStop = new System.Windows.Forms.Button();
             this.btnGetHttp = new System.Windows.Forms.Button();
             this.btnPost = new System.Windows.Forms.Button();
+            this.btnSendGmail = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLog
@@ -129,11 +130,22 @@
             this.btnPost.UseVisualStyleBackColor = true;
             this.btnPost.Click += new System.EventHandler(this.btnPost_Click);
             // 
+            // btnSendGmail
+            // 
+            this.btnSendGmail.Location = new System.Drawing.Point(234, 45);
+            this.btnSendGmail.Name = "btnSendGmail";
+            this.btnSendGmail.Size = new System.Drawing.Size(75, 23);
+            this.btnSendGmail.TabIndex = 9;
+            this.btnSendGmail.Text = "send gmail";
+            this.btnSendGmail.UseVisualStyleBackColor = true;
+            this.btnSendGmail.Click += new System.EventHandler(this.btnSendGmail_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 514);
+            this.Controls.Add(this.btnSendGmail);
             this.Controls.Add(this.btnPost);
             this.Controls.Add(this.btnGetHttp);
             this.Controls.Add(this.btnThreStop);
@@ -161,5 +173,6 @@
         private Button btnThreStop;
         private Button btnGetHttp;
         private Button btnPost;
+        private Button btnSendGmail;
     }
 }
