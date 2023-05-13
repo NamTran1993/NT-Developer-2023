@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsApp", "WinFormsApp\WinFormsApp.csproj", "{4AE41C10-7546-475F-B3A4-6F8E347C066A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSGlobal", "..\..\..\Lib\CSGlobal\Net Core\CSGlobal\CSGlobal\CSGlobal.csproj", "{23ABC24F-F9D1-465F-910E-77ABCF2A8D99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BEBackendLib", "..\..\..\Lib\NetCore\CSBackendLib\CSBackendLib\BEBackendLib.csproj", "{6725D6FE-04E3-49FF-9B5E-66BA8EEBB438}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{4AE41C10-7546-475F-B3A4-6F8E347C066A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AE41C10-7546-475F-B3A4-6F8E347C066A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AE41C10-7546-475F-B3A4-6F8E347C066A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23ABC24F-F9D1-465F-910E-77ABCF2A8D99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23ABC24F-F9D1-465F-910E-77ABCF2A8D99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23ABC24F-F9D1-465F-910E-77ABCF2A8D99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23ABC24F-F9D1-465F-910E-77ABCF2A8D99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6725D6FE-04E3-49FF-9B5E-66BA8EEBB438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6725D6FE-04E3-49FF-9B5E-66BA8EEBB438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6725D6FE-04E3-49FF-9B5E-66BA8EEBB438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6725D6FE-04E3-49FF-9B5E-66BA8EEBB438}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

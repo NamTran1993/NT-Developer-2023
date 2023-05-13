@@ -1,0 +1,15 @@
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\CSBackendLib.deps.json
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\CSBackendLib.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\CSBackendLib.pdb
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\Newtonsoft.Json.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\System.Security.Permissions.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\CSBackendLib.csproj.AssemblyReference.cache
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\CSBackendLib.GeneratedMSBuildEditorConfig.editorconfig
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\CSBackendLib.AssemblyInfoInputs.cache
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\CSBackendLib.AssemblyInfo.cs
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\CSBackendLib.csproj.CoreCompileInputs.cache
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\CSBackendLib.csproj.CopyComplete
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\CSBackendLib.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\refint\CSBackendLib.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\CSBackendLib.pdb
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\ref\CSBackendLib.dll

@@ -1,0 +1,15 @@
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\BEBackendLib.csproj.AssemblyReference.cache
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\BEBackendLib.GeneratedMSBuildEditorConfig.editorconfig
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\BEBackendLib.AssemblyInfoInputs.cache
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\BEBackendLib.AssemblyInfo.cs
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\BEBackendLib.csproj.CoreCompileInputs.cache
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\BEBackendLib.deps.json
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\BEBackendLib.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\BEBackendLib.pdb
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\Newtonsoft.Json.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\System.Security.Permissions.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\BEBackendLib.csproj.CopyComplete
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\BEBackendLib.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\refint\BEBackendLib.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\BEBackendLib.pdb
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\ref\BEBackendLib.dll
