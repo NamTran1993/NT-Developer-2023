@@ -6,6 +6,7 @@ using BEBackendLib.Module.Extensions;
 using BEBackendLib.Module.Globals;
 using BEBackendLib.Module.Gmail;
 using BEBackendLib.Module.Jwt;
+using System.Net.Mail;
 
 namespace WinFormsApp
 {
@@ -211,14 +212,21 @@ namespace WinFormsApp
         {
             try
             {
+                string att = @"h:\NT-Developer-2023\Tool\Tool Coding Lib\WinFormsApp\WinFormsApp\data\att.txt";
+                List<Attachment> attachments = new List<Attachment>();
+
+                Attachment at1 = new Attachment(att);
+                attachments.Add(at1);
+
+
                 BEGmailModel eGmailModel = new BEGmailModel()
                 {
                     Body = "Hi tran huy nam",
                     Subject = "C# Gmail",
                     Email = "nt.mailnoname93@gmail.com",
                     Password = "",
-                    ToEmails = new List<string>() { "tranhuynam93@gmail.com"}.ToArray(),
-                   
+                    ToEmails = new List<string>() { "tranhuynam93@gmail.com" }.ToArray(),
+                    Attachments = attachments.ToArray()
                 };
 
                 BEGmail gmail = new BEGmail(eGmailModel);
@@ -240,7 +248,7 @@ namespace WinFormsApp
                 {
                     ValidIssuer = "ValidIssuer",
                     IssuerSigningKey = "this is my custom Secret key for authentication",
-                    MinuteExpires = 5       
+                    MinuteExpires = 5
                 };
 
                 BEJwt eJwt = new BEJwt(jwtModel);
