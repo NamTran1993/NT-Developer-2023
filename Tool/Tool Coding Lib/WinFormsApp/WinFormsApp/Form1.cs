@@ -216,7 +216,7 @@ namespace WinFormsApp
                     Body = "Hi tran huy nam",
                     Subject = "C# Gmail",
                     Email = "nt.mailnoname93@gmail.com",
-                    Password = "bpqmzgfefogdouwv",
+                    Password = "",
                     ToEmails = new List<string>() { "tranhuynam93@gmail.com"}.ToArray(),
                    
                 };
