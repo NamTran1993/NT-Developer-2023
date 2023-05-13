@@ -5,6 +5,7 @@ using BEBackendLib.Module.Enums;
 using BEBackendLib.Module.Extensions;
 using BEBackendLib.Module.Globals;
 using BEBackendLib.Module.Gmail;
+using BEBackendLib.Module.Jwt;
 
 namespace WinFormsApp
 {
@@ -224,6 +225,26 @@ namespace WinFormsApp
                 gmail.InitGmail();
                 gmail.Send();
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnJWT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                JwtModel jwtModel = new JwtModel()
+                {
+                    ValidIssuer = "ValidIssuer",
+                    IssuerSigningKey = "this is my custom Secret key for authentication",
+                    MinuteExpires = 5       
+                };
+
+                BEJwt eJwt = new BEJwt(jwtModel);
+                string jwtToken = eJwt.GenerateJwt();
             }
             catch (Exception ex)
             {

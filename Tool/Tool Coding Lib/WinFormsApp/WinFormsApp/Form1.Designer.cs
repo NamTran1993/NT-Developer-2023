@@ -38,6 +38,7 @@
             this.btnGetHttp = new System.Windows.Forms.Button();
             this.btnPost = new System.Windows.Forms.Button();
             this.btnSendGmail = new System.Windows.Forms.Button();
+            this.btnJWT = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLog
@@ -140,11 +141,22 @@
             this.btnSendGmail.UseVisualStyleBackColor = true;
             this.btnSendGmail.Click += new System.EventHandler(this.btnSendGmail_Click);
             // 
+            // btnJWT
+            // 
+            this.btnJWT.Location = new System.Drawing.Point(315, 45);
+            this.btnJWT.Name = "btnJWT";
+            this.btnJWT.Size = new System.Drawing.Size(75, 23);
+            this.btnJWT.TabIndex = 10;
+            this.btnJWT.Text = "Jwt";
+            this.btnJWT.UseVisualStyleBackColor = true;
+            this.btnJWT.Click += new System.EventHandler(this.btnJWT_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 514);
+            this.Controls.Add(this.btnJWT);
             this.Controls.Add(this.btnSendGmail);
             this.Controls.Add(this.btnPost);
             this.Controls.Add(this.btnGetHttp);
@@ -174,5 +186,6 @@
         private Button btnGetHttp;
         private Button btnPost;
         private Button btnSendGmail;
+        private Button btnJWT;
     }
 }
