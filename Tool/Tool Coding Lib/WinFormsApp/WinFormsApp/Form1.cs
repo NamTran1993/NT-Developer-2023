@@ -270,11 +270,12 @@ namespace WinFormsApp
                     DatabaseName = "dev",
                     DBConfig = new BEDatabase()
                     {
-                        Server = @"WIN10\SQLEXPRESS",
+                        //Server = @"WIN10\SQLEXPRESS",
+                        Server = @"127.0.0.1",
                         InitialCatalog = "db_dev",
                         UID = "sa",
                         PWD = "12345",
-                        UseTrustServerCertificate = true
+                        UseTrustServerCertificate = false
                     }
                 };
 

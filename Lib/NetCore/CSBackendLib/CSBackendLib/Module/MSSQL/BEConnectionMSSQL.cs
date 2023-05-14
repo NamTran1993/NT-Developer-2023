@@ -465,10 +465,10 @@ namespace BEBackendLib.Module.MSSQL
                     _isUseTrustServerCertificate = true;
 
                 int? iTimeOut = 0;
-                iTimeOut = dbConfigDetail?.Timeout;
+                iTimeOut = dbConfigDetail?.TimeoutExec;
 
                 if (iTimeOut is not null)
-                    _timeOutExec = iTimeOut.Value;
+                    _timeOutExec = iTimeOut.Value * 1000;
 
                 if (_timeOutExec <= 0)
                     _timeOutExec = 10000;
@@ -483,7 +483,7 @@ namespace BEBackendLib.Module.MSSQL
                     else
                     {
                         _connString = $"server={dbConfigDetail?.Server};Initial Catalog={dbConfigDetail?.InitialCatalog};" +
-                            $"uid={dbConfigDetail?.UID};pwd={dbConfigDetail?.PWD};Timeout={_timeOutExec};" +
+                            $"uid={dbConfigDetail?.UID};pwd={dbConfigDetail?.PWD};Timeout={dbConfigDetail?.TimeoutOpen};" +
                             $"Encrypt={dbConfigDetail?.IsEncrypt};trustServerCertificate={dbConfigDetail?.IsTrustServerCertificate}";
                     }
                 }
