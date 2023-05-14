@@ -6,6 +6,7 @@ using BEBackendLib.Module.Extensions;
 using BEBackendLib.Module.Globals;
 using BEBackendLib.Module.Gmail;
 using BEBackendLib.Module.Jwt;
+using BEBackendLib.Module.MSSQL;
 using System.Net.Mail;
 
 namespace WinFormsApp
@@ -253,6 +254,36 @@ namespace WinFormsApp
 
                 BEJwt eJwt = new BEJwt(jwtModel);
                 string jwtToken = eJwt.GenerateJwt();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnMSSQL_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BEMSSQLConfig dbConfig = new BEMSSQLConfig()
+                {
+                    DatabaseName = "dev",
+                    DBConfig = new BEDatabase()
+                    {
+                        Server = @"WIN10\SQLEXPRESS",
+                        InitialCatalog = "db_dev",
+                        UID = "sa",
+                        PWD = "12345",
+                        UseTrustServerCertificate = true
+                    }
+                };
+
+                BEConnectionMSSQL mSSQL = new BEConnectionMSSQL(dbConfig);
+
+                string sql = $"select * from [dbo].[Customer] with (nolock) ";
+
+                var data = mSSQL.Execute_Table(sql);
+
             }
             catch (Exception ex)
             {

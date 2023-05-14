@@ -195,22 +195,19 @@ namespace BEBackendLib.Module.MSSQL
                 if (_sqlConnection is null)
                     SQLConnection(_connString);
 
-                else
+                if (_sqlConnection?.State == ConnectionState.Closed)
+                    _sqlConnection.Open();
+
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, _sqlConnection))
                 {
-                    if (_sqlConnection.State == ConnectionState.Closed)
-                        _sqlConnection.Open();
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandTimeout = _timeOutExec;
 
-                    using (SqlCommand cmd = new SqlCommand(sqlQuery, _sqlConnection))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.CommandTimeout = _timeOutExec;
+                    int obj = cmd.ExecuteNonQuery();
 
-                        int obj = cmd.ExecuteNonQuery();
-
-                        cmd.Dispose();
-                        res = obj > 0;
-                    }
-                }  
+                    cmd.Dispose();
+                    res = obj > 0;
+                }
             }
             catch (Exception)
             {
@@ -225,7 +222,31 @@ namespace BEBackendLib.Module.MSSQL
             bool res = false;
             try
             {
+                if (sqlQuery.Length == 0)
+                    throw new Exception("SQL Query is nullOrEmpty, please check again!");
 
+                if (parameters is null || parameters.Length == 0)
+                    throw new Exception("SqlParameter is nullOrEmpty, please check again!");
+
+                if (_sqlConnection is null)
+                    SQLConnection(_connString);
+
+                if (_sqlConnection?.State == ConnectionState.Closed)
+                    _sqlConnection.Open();
+
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, _sqlConnection))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandTimeout = _timeOutExec;
+
+                    foreach (SqlParameter param in parameters)
+                        cmd.Parameters.Add(param);
+
+                    int obj = cmd.ExecuteNonQuery();
+
+                    cmd.Dispose();
+                    res = obj > 0;
+                }
             }
             catch (Exception)
             {
@@ -235,24 +256,162 @@ namespace BEBackendLib.Module.MSSQL
             return res;
         }
 
-        public override object Execute_NoneQueryStoredProcedure(string procedureName, SqlParameter[]? parameters)
+        public override bool Execute_NoneQueryStoredProcedure(string procedureName, SqlParameter[]? parameters)
         {
-            throw new NotImplementedException();
+            bool res = false;
+            try
+            {
+                if (procedureName.Length == 0)
+                    throw new Exception("Procedure Name is nullOrEmpty, please check again!");
+
+                if (parameters is null || parameters.Length == 0)
+                    throw new Exception("SqlParameter is nullOrEmpty, please check again!");
+
+                if (_sqlConnection is null)
+                    SQLConnection(_connString);
+
+                if (_sqlConnection?.State == ConnectionState.Closed)
+                    _sqlConnection.Open();
+
+                using (SqlCommand cmd = new SqlCommand(procedureName, _sqlConnection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = _timeOutExec;
+
+                    foreach (SqlParameter param in parameters)
+                        cmd.Parameters.Add(param);
+
+                    int obj = cmd.ExecuteNonQuery();
+
+                    cmd.Dispose();
+                    res = obj > 0;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { CloseSQLConnection(); }
+            return res;
         }
 
         public override DataTable? Execute_StoredProcedure(string procedureName, SqlParameter[]? parameters)
         {
-            throw new NotImplementedException();
+            DataTable? res = null;
+            DataSet? dst = new DataSet();
+            try
+            {
+                if (procedureName.Length == 0)
+                    throw new Exception("Procedure Name is nullOrEmpty, please check again!");
+
+                if (parameters is null || parameters.Length == 0)
+                    throw new Exception("SqlParameter is nullOrEmpty, please check again!");
+
+                if (_sqlConnection is null)
+                    SQLConnection(_connString);
+
+                if (_sqlConnection?.State == ConnectionState.Closed)
+                    _sqlConnection.Open();
+
+                SqlCommand command = new SqlCommand(procedureName, _sqlConnection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandTimeout = _timeOutExec;
+
+                foreach (SqlParameter param in parameters)
+                    command.Parameters.Add(param);
+
+                using (SqlDataAdapter adap = new SqlDataAdapter(command)) { adap.Fill(dst); }
+                command.Parameters.Clear();
+                command.Dispose();
+
+                if (dst != null && dst.Tables.Count > 0)
+                    res = dst.Tables[0];
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { CloseSQLConnection(); dst = null; }
+            return res;
         }
 
         public override DataTable? Execute_Table(string sqlQuery)
         {
-            throw new NotImplementedException();
+            DataTable? res = null;
+            DataSet? dst = new DataSet();
+            try
+            {
+                if (sqlQuery.Length == 0)
+                    throw new Exception("SQL Query is nullOrEmpty, please check again!");
+
+                if (_sqlConnection is null)
+                    SQLConnection(_connString);
+
+                if (_sqlConnection?.State == ConnectionState.Closed)
+                    _sqlConnection.Open();
+
+                SqlCommand command = new SqlCommand(sqlQuery, _sqlConnection);
+                command.CommandType = CommandType.Text;
+                command.CommandTimeout = _timeOutExec;
+
+                using (SqlDataAdapter adap = new SqlDataAdapter(command)) { adap.Fill(dst); }
+
+                command.Parameters.Clear();
+                command.Dispose();
+
+                if (dst != null && dst.Tables.Count > 0)
+                    res = dst.Tables[0];
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { CloseSQLConnection(); dst = null; }
+            return res;
         }
 
         public override DataTable? Execute_Table(string sqlQuery, SqlParameter[]? parameters)
         {
-            throw new NotImplementedException();
+            DataTable? res = null;
+            DataSet? dst = new DataSet();
+            try
+            {
+                if (sqlQuery.Length == 0)
+                    throw new Exception("SQL Query is nullOrEmpty, please check again!");
+
+                if (parameters is null || parameters.Length == 0)
+                    throw new Exception("SqlParameter is nullOrEmpty, please check again!");
+
+                if (_sqlConnection is null)
+                    SQLConnection(_connString);
+
+                if (_sqlConnection?.State == ConnectionState.Closed)
+                    _sqlConnection.Open();
+
+                SqlCommand command = new SqlCommand(sqlQuery, _sqlConnection);
+                command.CommandType = CommandType.Text;
+                command.CommandTimeout = _timeOutExec;
+
+                if (parameters is not null && parameters.Length > 0)
+                {
+                    foreach (SqlParameter param in parameters)
+                        command.Parameters.Add(param);
+                }
+
+                using (SqlDataAdapter adap = new SqlDataAdapter(command)) { adap.Fill(dst); }
+
+                command.Parameters.Clear();
+                command.Dispose();
+
+                if (dst != null && dst.Tables.Count > 0)
+                    res = dst.Tables[0];
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { CloseSQLConnection(); dst = null; }
+            return res;
         }
 
         public void Dispose()
@@ -262,7 +421,7 @@ namespace BEBackendLib.Module.MSSQL
                 _connString = string.Empty;
                 _dbConfig = null;
 
-                CloseSQLConnection();        
+                CloseSQLConnection();
             }
             catch (Exception)
             {
@@ -318,7 +477,7 @@ namespace BEBackendLib.Module.MSSQL
                 {
                     // --- Use Windows Certificate ---
                     if (_isUseTrustServerCertificate)
-                        _connString = $"Server={dbConfigDetail?.Server};Database={_dbConfig.DatabaseName};Trusted_Connection={_isUseTrustServerCertificate};MultipleActiveResultSets={_isUseTrustServerCertificate}";
+                        _connString = $"Server={dbConfigDetail?.Server};Database={dbConfigDetail?.InitialCatalog};Trusted_Connection={_isUseTrustServerCertificate};MultipleActiveResultSets={_isUseTrustServerCertificate}";
 
                     // -- Use Account Login ---
                     else

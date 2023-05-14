@@ -39,6 +39,7 @@
             this.btnPost = new System.Windows.Forms.Button();
             this.btnSendGmail = new System.Windows.Forms.Button();
             this.btnJWT = new System.Windows.Forms.Button();
+            this.btnMSSQL = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLog
@@ -113,7 +114,7 @@
             // 
             // btnGetHttp
             // 
-            this.btnGetHttp.Location = new System.Drawing.Point(16, 45);
+            this.btnGetHttp.Location = new System.Drawing.Point(12, 45);
             this.btnGetHttp.Name = "btnGetHttp";
             this.btnGetHttp.Size = new System.Drawing.Size(103, 23);
             this.btnGetHttp.TabIndex = 7;
@@ -151,11 +152,22 @@
             this.btnJWT.UseVisualStyleBackColor = true;
             this.btnJWT.Click += new System.EventHandler(this.btnJWT_Click);
             // 
+            // btnMSSQL
+            // 
+            this.btnMSSQL.Location = new System.Drawing.Point(12, 74);
+            this.btnMSSQL.Name = "btnMSSQL";
+            this.btnMSSQL.Size = new System.Drawing.Size(75, 23);
+            this.btnMSSQL.TabIndex = 11;
+            this.btnMSSQL.Text = "mssql";
+            this.btnMSSQL.UseVisualStyleBackColor = true;
+            this.btnMSSQL.Click += new System.EventHandler(this.btnMSSQL_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 514);
+            this.Controls.Add(this.btnMSSQL);
             this.Controls.Add(this.btnJWT);
             this.Controls.Add(this.btnSendGmail);
             this.Controls.Add(this.btnPost);
@@ -187,5 +199,6 @@
         private Button btnPost;
         private Button btnSendGmail;
         private Button btnJWT;
+        private Button btnMSSQL;
     }
 }

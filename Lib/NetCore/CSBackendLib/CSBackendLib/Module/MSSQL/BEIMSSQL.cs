@@ -11,12 +11,11 @@ namespace BEBackendLib.Module.MSSQL
 
         public abstract DataTable? Execute_Table(string sqlQuery);
         public abstract DataTable? Execute_Table(string sqlQuery, SqlParameter[]? parameters);
+        public abstract DataTable? Execute_StoredProcedure(string procedureName, SqlParameter[]? parameters);
 
         public abstract bool ExecuteNonQuery(string sqlQuery);
         public abstract bool ExecuteNonQuery(string sqlQuery, SqlParameter[]? parameters);
-
-        public abstract DataTable? Execute_StoredProcedure(string procedureName, SqlParameter[]? parameters);
-        public abstract object Execute_NoneQueryStoredProcedure(string procedureName, SqlParameter[]? parameters);
+        public abstract bool Execute_NoneQueryStoredProcedure(string procedureName, SqlParameter[]? parameters);
 
 
         protected void SQLConnection(string connString)
@@ -50,7 +49,7 @@ namespace BEBackendLib.Module.MSSQL
             }
         }
 
-        protected string? GetParameterValue(SqlParameter? parameter)
+        public string? GetParameterValue(SqlParameter? parameter)
         {
             string? res = string.Empty;
             try
@@ -112,7 +111,7 @@ namespace BEBackendLib.Module.MSSQL
             }
         }
 
-        protected string ConvertSQLQueryParamToString(string sqlQuery, SqlParameter[]? parameters)
+        public string ConvertSQLQueryParamToString(string sqlQuery, SqlParameter[]? parameters)
         {
             string? res = string.Empty;
             try
@@ -132,6 +131,18 @@ namespace BEBackendLib.Module.MSSQL
             {
                 throw;
             }
+        }
+
+        public object? GetDataFromDataRow(DataRow? row, string name)
+        {
+            object? res = null;
+            try
+            {
+                if (row is not null && !string.IsNullOrEmpty(name))
+                    res = row[name];
+            }
+            catch (Exception) { throw; }
+            return res;
         }
     }
 }
