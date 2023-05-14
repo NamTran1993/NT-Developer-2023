@@ -22,6 +22,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.SqlClient">
+      <HintPath>Lib\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.IdentityModel.Tokens.Jwt">
       <HintPath>Lib\Jwt\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
