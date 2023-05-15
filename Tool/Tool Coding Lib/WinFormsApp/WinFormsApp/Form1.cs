@@ -5,6 +5,7 @@ using BEBackendLib.Module.Enums;
 using BEBackendLib.Module.Extensions;
 using BEBackendLib.Module.Globals;
 using BEBackendLib.Module.Gmail;
+using BEBackendLib.Module.IO.Files;
 using BEBackendLib.Module.Jwt;
 using BEBackendLib.Module.MSSQL;
 using System.Data.SqlClient;
@@ -305,6 +306,31 @@ namespace WinFormsApp
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnIO_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // ---
+                string path = @"h:\NT-Developer-2023\Tool\Tool Coding Lib\WinFormsApp\WinFormsApp\data\att.txt";
+                string path1 = @"h:\NT-Developer-2023\Tool\Tool Coding Lib\WinFormsApp\WinFormsApp\data\A.log";
+                string path2 = @"h:\CODE\@@@_LEARN_@@@\Service\2023\2023-01-08\build\";
+
+
+                bool bExist = path.BECheckExisted();
+                bool bLocked = path.BECheckLocked();
+              //  string pathNew = path1.BERenameExtension(".log", ".txt");
+
+                var files = path2.BEGetFiles("*", 10, SearchOption.TopDirectoryOnly);
+                var files1 = path2.BEGetFiles();
+              
+            }
+            catch (Exception ex)
+            {
+
                 MessageBox.Show(ex.Message);
             }
         }
