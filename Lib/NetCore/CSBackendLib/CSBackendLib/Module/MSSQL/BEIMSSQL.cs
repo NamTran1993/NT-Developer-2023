@@ -133,6 +133,35 @@ namespace BEBackendLib.Module.MSSQL
             }
         }
 
+        public string ConvertProcParamToString(string procName, SqlParameter[]? parameters)
+        {
+            string? res = string.Empty;
+            try
+            {
+                if (parameters is not null && parameters.Length > 0)
+                {
+                    string strParamer = string.Empty;
+                    int idx = 0;
+                    foreach (var x in parameters)
+                    {
+                        string? value = GetParameterValue(x);
+                        if (idx == parameters.Length - 1)
+                            strParamer += value;
+                        else
+                            strParamer += value + ", ";
+                        idx++;
+                    }
+
+                    res = $"exec {procName} {strParamer}";
+                }
+                return res;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public object? GetDataFromDataRow(DataRow? row, string name)
         {
             object? res = null;

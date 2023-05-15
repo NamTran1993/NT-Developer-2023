@@ -7,6 +7,7 @@ using BEBackendLib.Module.Globals;
 using BEBackendLib.Module.Gmail;
 using BEBackendLib.Module.Jwt;
 using BEBackendLib.Module.MSSQL;
+using System.Data.SqlClient;
 using System.Net.Mail;
 
 namespace WinFormsApp
@@ -271,20 +272,36 @@ namespace WinFormsApp
                     DBConfig = new BEDatabase()
                     {
                         //Server = @"WIN10\SQLEXPRESS",
+                        UseTrustServerCertificate = false,
                         Server = @"127.0.0.1",
                         InitialCatalog = "db_dev",
                         UID = "sa",
-                        PWD = "12345",
-                        UseTrustServerCertificate = false
+                        PWD = "12345"
                     }
                 };
 
                 BEConnectionMSSQL mSSQL = new BEConnectionMSSQL(dbConfig);
 
-                string sql = $"select * from [dbo].[Customer] with (nolock) ";
+                //string sql = $"select * from [dbo].[Customer] with (nolock) ";
+                //var data = mSSQL.Execute_Table(sql);
 
-                var data = mSSQL.Execute_Table(sql);
+                string procName = "PROC_GetCustomer";
+                bool bAll = false;
+                int customerID = 1;
 
+                List<SqlParameter> parameters = new List<SqlParameter>() { };
+                SqlParameter? pIsAll = mSSQL?.AddParameter("@isAll", System.Data.SqlDbType.Bit, bAll);
+                SqlParameter? pCustomerID = mSSQL?.AddParameter("@customerID", System.Data.SqlDbType.Int, customerID);
+
+                if (pIsAll is not null)
+                    parameters.Add(pIsAll);
+
+                if (pCustomerID is not null)
+                    parameters.Add(pCustomerID);
+
+
+                var dt = mSSQL?.Execute_StoredProcedure(procName, parameters.ToArray());
+                var aa = mSSQL?.ConvertProcParamToString(procName, parameters.ToArray());
             }
             catch (Exception ex)
             {
