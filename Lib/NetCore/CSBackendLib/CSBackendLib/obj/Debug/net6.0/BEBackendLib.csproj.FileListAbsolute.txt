@@ -13,3 +13,8 @@ H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\BEBa
 H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\refint\BEBackendLib.dll
 H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\BEBackendLib.pdb
 H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\obj\Debug\net6.0\ref\BEBackendLib.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+H:\NT-Developer-2023\Lib\NetCore\CSBackendLib\CSBackendLib\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

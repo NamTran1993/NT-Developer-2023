@@ -5,7 +5,11 @@ using BEBackendLib.Module.Enums;
 using BEBackendLib.Module.Extensions;
 using BEBackendLib.Module.Globals;
 using BEBackendLib.Module.Gmail;
+using BEBackendLib.Module.IO.Files;
 using BEBackendLib.Module.Jwt;
+using BEBackendLib.Module.MSSQL;
+using System.Data.SqlClient;
+using System.Net.Mail;
 
 namespace WinFormsApp
 {
@@ -211,14 +215,21 @@ namespace WinFormsApp
         {
             try
             {
+                string att = @"h:\NT-Developer-2023\Tool\Tool Coding Lib\WinFormsApp\WinFormsApp\data\att.txt";
+                List<Attachment> attachments = new List<Attachment>();
+
+                Attachment at1 = new Attachment(att);
+                attachments.Add(at1);
+
+
                 BEGmailModel eGmailModel = new BEGmailModel()
                 {
                     Body = "Hi tran huy nam",
                     Subject = "C# Gmail",
                     Email = "nt.mailnoname93@gmail.com",
                     Password = "",
-                    ToEmails = new List<string>() { "tranhuynam93@gmail.com"}.ToArray(),
-                   
+                    ToEmails = new List<string>() { "tranhuynam93@gmail.com" }.ToArray(),
+                    Attachments = attachments.ToArray()
                 };
 
                 BEGmail gmail = new BEGmail(eGmailModel);
@@ -240,7 +251,7 @@ namespace WinFormsApp
                 {
                     ValidIssuer = "ValidIssuer",
                     IssuerSigningKey = "this is my custom Secret key for authentication",
-                    MinuteExpires = 5       
+                    MinuteExpires = 5
                 };
 
                 BEJwt eJwt = new BEJwt(jwtModel);
@@ -248,6 +259,78 @@ namespace WinFormsApp
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnMSSQL_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BEMSSQLConfig dbConfig = new BEMSSQLConfig()
+                {
+                    DatabaseName = "dev",
+                    DBConfig = new BEDatabase()
+                    {
+                        //Server = @"WIN10\SQLEXPRESS",
+                        UseTrustServerCertificate = false,
+                        Server = @"127.0.0.1",
+                        InitialCatalog = "db_dev",
+                        UID = "sa",
+                        PWD = "12345"
+                    }
+                };
+
+                BEConnectionMSSQL mSSQL = new BEConnectionMSSQL(dbConfig);
+
+                //string sql = $"select * from [dbo].[Customer] with (nolock) ";
+                //var data = mSSQL.Execute_Table(sql);
+
+                string procName = "PROC_GetCustomer";
+                bool bAll = false;
+                int customerID = 1;
+
+                List<SqlParameter> parameters = new List<SqlParameter>() { };
+                SqlParameter? pIsAll = mSSQL?.AddParameter("@isAll", System.Data.SqlDbType.Bit, bAll);
+                SqlParameter? pCustomerID = mSSQL?.AddParameter("@customerID", System.Data.SqlDbType.Int, customerID);
+
+                if (pIsAll is not null)
+                    parameters.Add(pIsAll);
+
+                if (pCustomerID is not null)
+                    parameters.Add(pCustomerID);
+
+
+                var dt = mSSQL?.Execute_StoredProcedure(procName, parameters.ToArray());
+                var aa = mSSQL?.ConvertProcParamToString(procName, parameters.ToArray());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnIO_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // ---
+                string path = @"h:\NT-Developer-2023\Tool\Tool Coding Lib\WinFormsApp\WinFormsApp\data\att.txt";
+                string path1 = @"h:\NT-Developer-2023\Tool\Tool Coding Lib\WinFormsApp\WinFormsApp\data\A.log";
+                string path2 = @"h:\CODE\@@@_LEARN_@@@\Service\2023\2023-01-08\build\";
+
+
+                bool bExist = path.BECheckExisted();
+                bool bLocked = path.BECheckLocked();
+              //  string pathNew = path1.BERenameExtension(".log", ".txt");
+
+                var files = path2.BEGetFiles("*", 10, SearchOption.TopDirectoryOnly);
+                var files1 = path2.BEGetFiles();
+              
+            }
+            catch (Exception ex)
+            {
+
                 MessageBox.Show(ex.Message);
             }
         }
